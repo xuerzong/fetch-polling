@@ -30,7 +30,7 @@ enum States {
   Cancel = 'cancel'
 }
 
-class FetchPolling<R> implements FetchPollingInterface {
+export default class FetchPolling<R> implements FetchPollingInterface {
   private timeoutId: number | NodeJS.Timeout | null
   private state: States
   private options: Options<R>
