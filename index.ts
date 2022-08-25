@@ -3,7 +3,7 @@ type Delay = number | (() => number)
 type Options<R = unknown> = {
   fetch: (() => Promise<R>) | (() => R)
 
-  shouldStop?: (result: R | null) => boolean
+  shouldStop?(result: R | null): boolean
 
   onError?(e: any): void
 
