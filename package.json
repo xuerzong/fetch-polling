@@ -2,7 +2,7 @@
   "name": "polling",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": "https://github.com/xuerzong/polling.git",
+  "repository": "https://github.com/xuerzong/fetch-polling.git",
   "author": "xucong <xuerzong@gmail.com>",
   "license": "MIT",
   "devDependencies": {
