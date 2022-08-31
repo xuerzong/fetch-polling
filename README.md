@@ -5,7 +5,12 @@ Simple fetch polling
 
 ## Get started
 
+```bash
+yarn add fetch-polling
+```
+
 ```ts
+import FetchPolling from 'fetch-polling'
 
 const fetchFunc = () => {
   return fetch('https://api.github.com/repos/xuerzong/fetch-polling').then(res => res.json())
