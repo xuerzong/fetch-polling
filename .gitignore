@@ -5,4 +5,5 @@ dist/
 .vscode 
 .idea
 
+yarn.lock
 coverage
