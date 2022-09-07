@@ -30,3 +30,18 @@ test('`onDone` should be run when `shouldStop` return true', async () => {
   expect(onDone.mock.results[0].value).toBe(mockCalledTime - 1)
   expect(onDone).toHaveBeenCalledTimes(1)
 })
+
+
+test('`onProcess` should run on every fetch', async () => {
+  let fetchTime = 0;
+  const fetchMock = () => Promise.resolve(fetchTime++)
+  const onProcess = jest.fn()
+  const fetchPolling = new FetchPolling({
+    fetch: fetchMock,
+    shouldStop: () => fetchTime === mockCalledTime,
+    onProcess
+  })
+
+  await fetchPolling.start()
+  expect(onProcess).toHaveBeenCalledTimes(mockCalledTime)
+})
