@@ -8,8 +8,8 @@
     "resolveJsonModule": true,
     "forceConsistentCasingInFileNames": true,
     "declaration": true,
-    "outDir": "dist"
+    "outDir": "dist",
   },
-  "include": ["*.ts"],
+  "include": ["lib/*.ts"],
   "exclude": ["node_modules"]
 }
