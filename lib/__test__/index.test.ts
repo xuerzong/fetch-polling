@@ -45,3 +45,23 @@ test('`onProcess` should run on every fetch', async () => {
   await fetchPolling.start()
   expect(onProcess).toHaveBeenCalledTimes(mockCalledTime)
 })
+
+test('`onError` should run when fetch throw error', async () => {
+  let fetchTime = 0;
+  const fetchMock = () => {
+    fetchTime++
+    if(fetchTime === 3) {
+      return Promise.reject()
+    }
+    return Promise.resolve()
+  }
+  const onError = jest.fn()
+  const fetchPolling = new FetchPolling({
+    fetch: fetchMock,
+    shouldStop: () => fetchTime === mockCalledTime,
+    onError
+  })
+
+  await fetchPolling.start()
+  expect(onError).toHaveBeenCalledTimes(1)
+})
