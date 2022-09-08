@@ -1,6 +1,6 @@
 {
   "name": "fetch-polling",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "source": "lib/index.ts",
   "main": "dist/index.js",
   "umd:main": "dist/index.umd.js",
