@@ -51,7 +51,7 @@ test('`onError` should run when fetch throw error', async () => {
   const fetchMock = () => {
     fetchTime++
     if(fetchTime === 3) {
-      return Promise.reject()
+      return Promise.reject('onError')
     }
     return Promise.resolve()
   }
@@ -64,4 +64,31 @@ test('`onError` should run when fetch throw error', async () => {
 
   await fetchPolling.start()
   expect(onError).toHaveBeenCalledTimes(1)
+  expect(onError.mock.lastCall[0]).toBe('onError')
+})
+
+test('`cancel` should stop the polling', async () => {
+  let fetchTime = 0;
+  const fetchMock = () => Promise.resolve(fetchTime++)
+  const onError = jest.fn()
+  const onDone = jest.fn()
+  const onProcess = jest.fn()
+  const fetchPolling = new FetchPolling({
+    fetch: fetchMock,
+    shouldStop: () => {
+      if(fetchTime === 3) {
+        fetchPolling.cancel()
+      }
+      return fetchTime === mockCalledTime
+    },
+    onProcess: onProcess,
+    onDone,
+    onError
+  })
+
+  await fetchPolling.start()
+  expect(onDone).toHaveBeenCalledTimes(0)
+  expect(onProcess).toHaveBeenCalledTimes(3)
+  expect(onError).toHaveBeenCalledTimes(1)
+  expect(onError.mock.lastCall[0]).toBe('CANCELLED')
 })
