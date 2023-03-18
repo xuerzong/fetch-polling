@@ -1,0 +1,37 @@
+{
+  "name": "use-fetch-polling",
+  "version": "0.0.1",
+  "main": "dist/index.cjs",
+  "typings": "dist/index.d.ts",
+  "module": "dist/index.esm.js",
+  "exports": {
+    "import": "./dist/index.esm.js",
+    "require": "./dist/index.cjs",
+    "types": "./dist/index.d.ts"
+  },
+  "files": [
+    "README.md",
+    "dist"
+  ],
+  "license": "MIT",
+  "repository": "https://github.com/xuerzong/fetch-polling.git",
+  "author": "xucong <xuerzong@gmail.com>",
+  "scripts": {
+    "build": "npm-run-all clean build:*",
+    "build:ts": "node ../../scripts/build.js",
+    "build:dts": "tsc --emitDeclarationOnly",
+    "clean": "rimraf ./dist"
+  },
+  "dependencies": {
+    "fetch-polling": "*"
+  },
+  "peerDependencies": {
+    "react": "^16 || ^17 || ^18",
+    "react-dom": "^16 || ^17 || ^18"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.28",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  }
+}
